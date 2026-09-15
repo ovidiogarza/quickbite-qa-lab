@@ -1,12 +1,35 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>QuickBite QA Lab</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>QuickBite QA Lab</title>
+  <link rel="stylesheet" href="css/styles.css">
 </head>
 <body>
-    <h1>QuickBite QA Lab</h1>
-    <p>Software Testing Practice Application</p>
-</body>
-</html>
+<header><div><h1>🍔 QuickBite</h1><p>QA Lab v1.0</p></div><div class="badge">Software Testing Practice</div></header>
+<main>
+<section class="panel">
+<h2>Menú</h2><p class="muted">Agrega productos al carrito y completa tu pedido.</p>
+<div id="menu" class="grid"></div>
+</section>
+<section class="panel sticky">
+<h2>Tu pedido</h2><div id="cart"></div>
+<hr>
+<label for="coupon">Cupón</label><div class="row"><input id="coupon" data-testid="coupon-input" placeholder="Código promocional"><button id="applyCoupon" data-testid="apply-coupon">Aplicar</button></div><p id="couponMsg" class="message"></p>
+<label class="check"><input type="checkbox" id="plus" data-testid="plus-member"> Soy miembro QuickBite Plus</label>
+<label for="tip">Propina personalizada (MXN)</label><input id="tip" data-testid="tip-input" type="number" value="0" min="0" step="1">
+<div class="totals">
+<div><span>Subtotal</span><strong id="subtotal">$0.00</strong></div>
+<div><span>Descuento</span><strong id="discount">-$0.00</strong></div>
+<div><span>Envío</span><strong id="shipping">$60.00</strong></div>
+<div><span>Propina</span><strong id="tipTotal">$0.00</strong></div>
+<div class="grand"><span>Total</span><strong id="total">$60.00</strong></div>
+</div>
+<button id="checkout" data-testid="checkout" class="primary">Realizar pedido</button><p id="checkoutMsg" class="message"></p>
+</section>
+<section class="panel full"><h2>Seguimiento del pedido</h2><p>Estado actual: <strong id="orderStatus" data-testid="order-status">SIN PEDIDO</strong></p><div class="row"><button id="advance" data-testid="advance-status">Avanzar estado</button><button id="cancel" data-testid="cancel-order" class="danger">Cancelar pedido</button></div><p id="statusMsg" class="message"></p></section>
+</main>
+<footer>QuickBite QA Lab · Aplicación académica para prácticas de pruebas de software</footer>
+<script src="js/app.js"></script>
+</body></html>
