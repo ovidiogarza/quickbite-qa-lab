@@ -20,11 +20,11 @@
 <label class="check"><input type="checkbox" id="plus" data-testid="plus-member"> Soy miembro QuickBite Plus</label>
 <label for="tip">Propina personalizada (MXN)</label><input id="tip" data-testid="tip-input" type="number" value="0" min="0" step="1">
 <div class="totals">
-<div><span>Subtotal</span><strong id="subtotal">$0.00</strong></div>
-<div><span>Descuento</span><strong id="discount">-$0.00</strong></div>
-<div><span>Envío</span><strong id="shipping">$60.00</strong></div>
-<div><span>Propina</span><strong id="tipTotal">$0.00</strong></div>
-<div class="grand"><span>Total</span><strong id="total">$60.00</strong></div>
+<div><span>Subtotal</span><strong id="subtotal" data-testid="subtotal">$0.00</strong></div>
+<div><span>Descuento</span><strong id="discount" data-testid="discount">-$0.00</strong></div>
+<div><span>Envío</span><strong id="shipping" data-testid="shipping">$60.00</strong></div>
+<div><span>Propina</span><strong id="tipTotal" data-testid="tip-total">$0.00</strong></div>
+<div class="grand"><span>Total</span><strong id="total" data-testid="total">$60.00</strong></div>
 </div>
 <button id="checkout" data-testid="checkout" class="primary">Realizar pedido</button><p id="checkoutMsg" class="message"></p>
 </section>
