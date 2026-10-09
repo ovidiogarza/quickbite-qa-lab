@@ -6,7 +6,18 @@ const $=id=>document.getElementById(id); const money=n=>`$${n.toFixed(2)}`;
 function renderMenu(){ $('menu').innerHTML=products.map(p=>`<div class="product" data-testid="product-${p.id}"><h3>${p.name}</h3><div>${money(p.price)}</div><button data-testid="add-${p.id}" onclick="add('${p.id}')">Agregar</button></div>`).join(''); }
 function add(id){cart[id]=(cart[id]||0)+1;render();} function qty(id,d){cart[id]=(cart[id]||0)+d;if(cart[id]<=0)delete cart[id];render();}
 function subtotal(){return products.reduce((s,p)=>s+(cart[p.id]||0)*p.price,0)}
-function discount(sub){return couponApplied && sub>200 && sub<1000 ? sub*.20:0}
+function discount(subtotal) {
+  const MIN_SUBTOTAL = 200;
+  const MAX_SUBTOTAL = 1000;
+  const DISCOUNT_RATE = 0.20;
+
+  const isEligible =
+    couponApplied &&
+    subtotal > MIN_SUBTOTAL &&
+    subtotal < MAX_SUBTOTAL;
+
+  return isEligible ? subtotal * DISCOUNT_RATE : 0;
+}
 function shipping(sub){const plus=$('plus').checked;if(plus)return sub>=300?0:30;return sub>500?30:60}
 function tip(){const raw=$('tip').value;const n=Number(raw);if(!Number.isFinite(n))return 0;return n;}
 function render(){let html='';products.forEach(p=>{if(cart[p.id])html+=`<div class="cart-row"><span>${p.name}<br><small>${money(p.price)} c/u</small></span><span class="qty"><button onclick="qty('${p.id}',-1)">−</button> ${cart[p.id]} <button onclick="qty('${p.id}',1)">+</button></span></div>`});$('cart').innerHTML=html||'<p class="muted">Tu carrito está vacío.</p>';const sub=subtotal(),disc=discount(sub),ship=shipping(sub),t=tip();$('subtotal').textContent=money(sub);$('discount').textContent='-'+money(disc);$('shipping').textContent=money(ship);$('tipTotal').textContent=money(t);$('total').textContent=money(sub-disc+ship+t);}
